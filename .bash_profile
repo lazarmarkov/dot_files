@@ -64,3 +64,7 @@ function grf() { git reset -- "$1"; }
 
 # Unstage and revert changes to file or folder.
 function grfh() { git checkout HEAD -- "$1"; }
+
+# some more ls aliases
+alias l='ls -l'
+alias ll='ls -la'
