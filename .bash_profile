@@ -48,6 +48,7 @@ alias grc='git rebase --continue'
 alias gra='git rebase --abort'
 alias grm='git rebase master'
 alias grmi='git rebase master --interactive'
+alias grmia='git rebase master --interactive --autosquash'
 alias gs='git status --short'
 alias gss='git status'
 alias gsts='git stash save'
@@ -68,3 +69,7 @@ function grfh() { git checkout HEAD -- "$1"; }
 # some more ls aliases
 alias l='ls -l'
 alias ll='ls -la'
+
+source <(kubectl completion bash)
+alias k=kubectl
+complete -F __start_kubectl k
