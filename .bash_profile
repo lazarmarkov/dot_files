@@ -12,13 +12,11 @@ CLRESET='\[\033[00m\]'
 ARROWICON=$(echo -e "\xe2\x86\xb3")
 PS1="$CLUSERHOST\u@\h$CLCOLON:$CLPATH\w$CLGIT\$(parse_git_branch)$CLRESET\\n\$ARROWICON$ "
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
 export GOPATH=$HOME/code/go
 
 export PATH=$GOPATH/bin:$PATH
+
+export PATH="/usr/local/share/chruby:$PATH"
 
 export LANG=en_US
 
@@ -51,7 +49,6 @@ alias grmi='git rebase master --interactive'
 alias grmia='git rebase master --interactive --autosquash'
 alias gs='git status --short'
 alias gss='git status'
-alias gsts='git stash save'
 alias gst='git stash'
 
 # ----------------------
@@ -70,6 +67,39 @@ function grfh() { git checkout HEAD -- "$1"; }
 alias l='ls -l'
 alias ll='ls -la'
 
-source <(kubectl completion bash)
-alias k=kubectl
-complete -F __start_kubectl k
+if [ -e /Users/lazarmarkov/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/lazarmarkov/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# Shopify folders
+alias vid='/Users/lazarmarkov/src/github.com/Shopify/video'
+alias shs='cd /Users/lazarmarkov/src/github.com/Shopify/arrive-server'
+alias shc='cd /Users/lazarmarkov/src/github.com/Shopify/arrive-client'
+alias shw='cd /Users/lazarmarkov/src/github.com/Shopify/arrive-website' 
+alias core='cd /Users/lazarmarkov/src/github.com/Shopify/shopify' 
+alias mono='cd /Users/lazarmarkov/src/github.com/Shopify/monorail' 
+alias bh='cd /Users/lazarmarkov/src/github.com/Shopify/bloodhound' 
+alias gtdl='cd /Users/lazarmarkov/Downloads'
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+# Chrome shortcuts
+alias cpsh='open -n -a "Google Chrome"  --args --profile-directory="Default" https://cloud-portal-tier2.shopifycloud.com/namespaces/arrive-server-production/runtime_instances' 
+alias cpsha='open -n -a "Google Chrome"  --args --profile-directory="Default" https://cloud-portal-tier2.shopifycloud.com/namespaces/shop-accounts-production-unrestricted/runtime_instances'
+alias cpbh='open -n -a "Google Chrome"  --args --profile-directory="Default" https://cloud-portal-tier2.shopifycloud.com/namespaces/bloodhound-production/runtime_instances' 
+alias cpshw='open -n -a "Google Chrome"  --args --profile-directory="Default" https://cloud-portal-tier2.shopifycloud.com/namespaces/arrive-website-production'
+alias chmode='open -n -a "Google Chrome"  --args --profile-directory="Default" https://app.mode.com/editor/shopify/reports/new'
+alias ddbh='open -n -a "Google Chrome"  --args --profile-directory="Default" https://shopify.datadoghq.com/dashboard/xre-kf2-ns4/bloodhound'
+alias ddsh='open -n -a "Google Chrome"  --args --profile-directory="Default" https://shopify.datadoghq.com/dashboard/ywd-3za-f35/shop-app'
+alias ddshw='open -n -a "Google Chrome"  --args --profile-directory="Default" https://shopify.datadoghq.com/dashboard/sqv-uw3-jgs/arrive-website-production'
+alias ddlazi='open -n -a "Google Chrome"  --args --profile-directory="Default" https://shopify.datadoghq.com/dashboard/chq-y4n-66n/lazis-dash'
+alias srvbh='open -n -a "Google Chrome"  --args --profile-directory="Default" https://services.shopify.io/services/bloodhound'
+alias srvsh='open -n -a "Google Chrome"  --args --profile-directory="Default" https://services.shopify.io/services/arrive-server'
+alias coreq='open -n -a "Google Chrome"  --args --profile-directory="Default" https://merge-queue.shopifycloud.com/Shopify/shopify'
+alias amp='open -n -a "Google Chrome"  --args --profile-directory="Default" https://analytics.amplitude.com/shopify-org/space/mrnrtay'
+alias ghshw='open -n -a "Google Chrome" --args --profile-directory="Default" https://github.com/shopify/arrive-website'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/lazarmarkov/google-cloud-sdk/path.bash.inc' ]; then . '/Users/lazarmarkov/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/lazarmarkov/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/lazarmarkov/google-cloud-sdk/completion.bash.inc'; fi
+
